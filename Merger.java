@@ -28,7 +28,35 @@ public class Merger {
       , int nItems  // number of items in the merged list
                     // = just past end of list1
       ) {
-    }
+		ArrayList<String> myArray = new ArrayList<String>();
+		for(int index = 0; index < usersData.size(); index++){
+			myArray.add(usersData.get(index));
+		}
+		int endOfFirst = start1;
+		int currentIndex = start0;
+		while(start0 < endOfFirst && start1 < nItems){ //Dreaded while loops seems neccessary here
+			if (usersData.get(start0).compareTo(usersData.get(start1)) < 0){
+				myArray.set(currentIndex, usersData.get(start0));
+				start0++;
+			}
+			else{
+				myArray.set(currentIndex, usersData.get(start1));
+				start1++;
+			}
+			currentIndex++;
+		}
+		while (start0 < endOfFirst){ //Could also be for-loops but far less perspicuous
+			myArray.set(currentIndex, usersData.get(start0));
+			start0++;
+			currentIndex++;
+		}
+		while (start1 < nItems){
+			myArray.set(currentIndex, usersData.get(start1));
+			start1++;
+			currentIndex++;
+		}
+		usersData = myArray;
+	}
 
 
     /**
